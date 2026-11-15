@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Ashô | Achadinhos da Shirley (@ashodinhos_promos)</title>
+  <meta name="description" content="🛍️ SÓ indico produtos bem avaliados! Confira minha vitrine completa na Shopee, promoções e descontos selecionados." />
+  <meta name="theme-color" content="#E11D74" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans (UI) + Playfair Display (Destaques Elegantes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fdf2f7',
+              100: '#fce7f1',
+              200: '#fad0e4',
+              300: '#f7a9cd',
+              400: '#f172ab',
+              500: '#e8468c',
+              600: '#E11D74', // Magenta principal dos posts da Ashô
+              700: '#be125d',
+              800: '#9d134d',
+              900: '#831543',
+            },
+            sand: {
+              50: '#FAF6F3',
+              100: '#F3ECE6',
+              200: '#E6D9CE',
+            },
+            plum: {
+              900: '#160D14',
+              800: '#231420',
+              700: '#331D2E',
+            }
+          },
+          keyframes: {
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' }
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-4px)' }
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 10px 25px -5px rgba(225, 29, 116, 0.45)' },
+              '50%': { boxShadow: '0 12px 30px -2px rgba(225, 29, 116, 0.7)' }
+            }
+          },
+          animation: {
+            shimmer: 'shimmer 2.8s infinite',
+            float: 'float 4s ease-in-out infinite',
+            pulseGlow: 'pulseGlow 3s infinite'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Esconder barra de rolagem nas pílulas de categoria mantendo o scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Gradiente de borda estilo Stories do Instagram + Magenta Ashô */
+    .avatar-ring {
+      background: linear-gradient(135deg, #FBBF24 0%, #E11D74 50%, #9C27B0 100%);
+      padding: 3.5px;
+    }
+
+    /* Banner estilo capa dos Reels da Ashô */
+    .asho-magenta-card {
+      background: linear-gradient(135deg, #E11D74 0%, #C2185B 55%, #8E24AA 100%);
+    }
+
+    /* Transições suaves de tema */
+    body {
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Estilização sutil de foco para acessibilidade */
+    *:focus-visible {
+      outline: 2px solid #E11D74;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+
+<body class="bg-sand-50 dark:bg-plum-900 text-stone-800 dark:text-stone-100 min-h-screen relative overflow-x-hidden selection:bg-brand-600 selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- EFEITOS DE FUNDO AMBIENTE (Cozy Lifestyle + Magenta Glow)             -->
+  <!-- ===================================================================== -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-brand-400/15 dark:bg-brand-600/20 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-28 w-72 h-72 rounded-full bg-amber-300/15 dark:bg-purple-600/15 blur-3xl"></div>
+    <div class="absolute -bottom-24 left-1/4 w-96 h-96 rounded-full bg-brand-300/10 dark:bg-brand-700/15 blur-3xl"></div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- CONTAINER PRINCIPAL MOBILE-FIRST                                      -->
+  <!-- ===================================================================== -->
+  <main class="relative z-10 max-w-md mx-auto px-4 pt-5 pb-14 min-h-screen flex flex-col justify-between">
+    
+    <div>
+      <!-- BARRA SUPERIOR DE AÇÕES RÁPIDAS -->
+      <div class="flex items-center justify-between mb-3">
+        <!-- Selo de Curadoria -->
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 dark:bg-plum-800/90 backdrop-blur-md border border-brand-200/70 dark:border-brand-800/60 shadow-sm text-xs font-semibold text-brand-700 dark:text-brand-300">
+          <span class="text-amber-500">✨</span>
+          <span>Curadoria Oficial</span>
+        </div>
+
+        <!-- Botões: Compartilhar & Alternar Tema Claro/Escuro -->
+        <div class="flex items-center gap-2">
+          <button
+            id="shareBtn"
+            type="button"
+            aria-label="Compartilhar página"
+            class="w-9 h-9 rounded-full bg-white/80 dark:bg-plum-800/90 backdrop-blur-md border border-stone-200/80 dark:border-plum-700 flex items-center justify-center text-stone-700 dark:text-stone-200 hover:border-brand-500 hover:text-brand-600 transition-all shadow-sm active:scale-95"
+            title="Compartilhar link"
+          >
+            <i class="ph ph-share-network text-lg"></i>
+          </button>
+
+          <button
+            id="themeToggleBtn"
+            type="button"
+            aria-label="Alternar tema claro ou escuro"
+            class="w-9 h-9 rounded-full bg-white/80 dark:bg-plum-800/90 backdrop-blur-md border border-stone-200/80 dark:border-plum-700 flex items-center justify-center text-stone-700 dark:text-amber-300 hover:border-brand-500 transition-all shadow-sm active:scale-95"
+            title="Alternar tema"
+          >
+            <i id="themeIcon" class="ph ph-moon text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- 1. CABEÇALHO DO PERFIL (Renderizado via SITE_CONFIG)              -->
+      <!-- ================================================================= -->
+      <header id="profileHeader" class="text-center mb-6">
+        <!-- Preenchido dinamicamente pelo JavaScript -->
+      </header>
+
+      <!-- ================================================================= -->
+      <!-- 2. BOTÃO PRINCIPAL EM DESTAQUE (Vitrine Completa Shopee)          -->
+      <!-- ================================================================= -->
+      <section id="primaryCtaSection" class="mb-6">
+        <!-- Preenchido dinamicamente pelo JavaScript -->
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- 3. BUSCA E PÍLULAS DE CATEGORIAS (Inspirado nos Destaques do IG)  -->
+      <!-- ================================================================= -->
+      <section class="mb-5 space-y-3" aria-label="Filtros de achadinhos">
+        <!-- Barra de Busca -->
+        <div class="relative">
+          <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 dark:text-stone-400 text-lg pointer-events-none"></i>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Buscar achadinho, ambiente ou oferta..."
+            class="w-full pl-10 pr-9 py-3 rounded-2xl bg-white dark:bg-plum-800/90 border border-stone-200/90 dark:border-plum-700 text-sm text-stone-800 dark:text-stone-100 placeholder-stone-400 dark:placeholder-stone-400 shadow-sm focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-500/20 transition-all"
+          />
+          <button
+            id="clearSearchBtn"
+            type="button"
+            aria-label="Limpar busca"
+            class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-brand-600 p-1"
+          >
+            <i class="ph-fill ph-x-circle text-lg"></i>
+          </button>
+        </div>
+
+        <!-- Pílulas Horizontais de Categorias -->
+        <div id="categoryPillsContainer" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-4 px-4">
+          <!-- Preenchido dinamicamente pelo JavaScript -->
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- 4. LISTA DE CARDS DE ACHADINHOS E COLEÇÕES                        -->
+      <!-- ================================================================= -->
+      <section aria-label="Coleções e Achadinhos">
+        <div class="flex items-center justify-between mb-3 px-1">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 flex items-center gap-1.5">
+            <i class="ph-fill ph-sparkle text-amber-500"></i>
+            <span id="activeCategoryLabel">Coleções em Destaque</span>
+          </h2>
+          <span id="resultsCounter" class="text-xs font-medium text-brand-600 dark:text-brand-300 bg-brand-50 dark:bg-brand-900/40 px-2.5 py-0.5 rounded-full">
+            <!-- Contagem automática -->
+          </span>
+        </div>
+
+        <!-- Container dos Links -->
+        <div id="linksContainer" class="space-y-3.5">
+          <!-- Preenchido dinamicamente pelo JavaScript -->
+        </div>
+
+        <!-- Estado Vazio (quando a busca não encontra resultados) -->
+        <div id="emptyState" class="hidden text-center py-10 px-4 rounded-3xl bg-white/70 dark:bg-plum-800/50 border border-dashed border-stone-300 dark:border-plum-700 my-2">
+          <div class="w-12 h-12 rounded-2xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300 flex items-center justify-center mx-auto mb-3 text-2xl">
+            <i class="ph ph-magnifying-glass"></i>
+          </div>
+          <p class="font-bold text-stone-800 dark:text-stone-100 text-sm mb-1">Nenhum achadinho encontrado</p>
+          <p class="text-xs text-stone-500 dark:text-stone-400 mb-4">Tente buscar outro termo ou veja todos os itens direto na minha vitrine completa.</p>
+          <button
+            id="resetFiltersBtn"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-600 text-white text-xs font-bold shadow-sm hover:bg-brand-700 transition-all"
+          >
+            <i class="ph ph-arrow-counter-clockwise"></i>
+            Mostrar todas as categorias
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 5. RODAPÉ & BOTÃO DO INSTAGRAM                                      -->
+    <!-- =================================================================== -->
+    <footer class="mt-10 pt-6 border-t border-stone-200/80 dark:border-plum-800 text-center space-y-5">
+      <!-- Card Instagram -->
+      <div id="socialFooterContainer">
+        <!-- Preenchido dinamicamente pelo JavaScript -->
+      </div>
+
+      <!-- Assinatura da Marca -->
+      <div class="space-y-1.5">
+        <p class="text-xs font-medium text-stone-500 dark:text-stone-400">
+          Feito com 💖 por <span class="font-bold text-brand-600 dark:text-brand-400">Ashô | Achadinhos da Shirley</span>
+        </p>
+        <p class="text-[11px] text-stone-400 dark:text-stone-500">
+           SÓ indico produtos bem avaliados • Links oficiais e seguros
+        </p>
+
+        <!-- Botão discreto de ajuda para o dono da página (GitHub Pages / Edição no código) -->
+        <div class="pt-3">
+          <button
+            id="openDevModalBtn"
+            type="button"
+            class="inline-flex items-center gap-1 text-[11px] text-stone-400/80 hover:text-brand-600 dark:text-stone-500 dark:hover:text-brand-400 transition-colors underline underline-offset-2"
+          >
+            <i class="ph ph-code"></i>
+            <span>Como atualizar links / Publicar no GitHub Pages</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- TOAST DE NOTIFICAÇÃO (Link Copiado)                                   -->
+  <!-- ===================================================================== -->
+  <div
+    id="toastNotification"
+    class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-300 bg-stone-900 dark:bg-white text-white dark:text-stone-900 px-4 py-2.5 rounded-full shadow-xl text-xs font-semibold flex items-center gap-2"
+    role="status"
+    aria-live="polite"
+  >
+    <i class="ph-fill ph-check-circle text-emerald-400 dark:text-emerald-600 text-base"></i>
+    <span id="toastMessage">Link da página copiado!</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL DE COMPARTILHAMENTO (À PROVA DE FALHAS EM IFRAMES E DESKTOP)     -->
+  <!-- ===================================================================== -->
+  <div
+    id="shareModal"
+    class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="shareModalTitle"
+  >
+    <div class="bg-white dark:bg-plum-800 border border-stone-200 dark:border-plum-700 rounded-3xl max-w-sm w-full p-5 shadow-2xl space-y-4 animate-float" style="animation: none;">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-8 h-8 rounded-full bg-brand-50 dark:bg-brand-900/50 text-brand-600 dark:text-brand-300 flex items-center justify-center">
+            <i class="ph-fill ph-share-network text-base"></i>
+          </span>
+          <div>
+            <h3 id="shareModalTitle" class="font-bold text-sm text-stone-900 dark:text-white">Compartilhar Achadinhos</h3>
+            <p class="text-[11px] text-stone-500 dark:text-stone-400">Envie esta vitrine para amigas e familiares ✨</p>
+          </div>
+        </div>
+        <button
+          id="closeShareModalBtn"
+          type="button"
+          class="w-8 h-8 rounded-full bg-stone-100 dark:bg-plum-700 text-stone-500 dark:text-stone-300 hover:text-brand-600 flex items-center justify-center transition-colors"
+          aria-label="Fechar modal de compartilhamento"
+        >
+          <i class="ph ph-x text-base"></i>
+        </button>
+      </div>
+
+      <!-- Caixa com Link + Botão Copiar -->
+      <div class="p-2.5 rounded-2xl bg-sand-50 dark:bg-plum-900/90 border border-stone-200 dark:border-plum-700 flex items-center justify-between gap-2">
+        <input
+          id="shareUrlInput"
+          type="text"
+          readonly
+          value="https://collshp.com/ashodinhos_promos?view=storefront"
+          class="bg-transparent text-xs text-stone-600 dark:text-stone-300 font-medium w-full focus:outline-none truncate px-1"
+          aria-label="Link para compartilhar"
+        />
+        <button
+          id="copyShareUrlBtn"
+          type="button"
+          class="shrink-0 inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-all active:scale-95 shadow-sm"
+        >
+          <i class="ph-bold ph-copy"></i>
+          <span>Copiar</span>
+        </button>
+      </div>
+
+      <!-- Botões de Redes Sociais Diretas -->
+      <div class="grid grid-cols-2 gap-2.5 pt-1">
+        <a
+          id="shareWhatsAppBtn"
+          href="https://api.whatsapp.com/send?text=Confira%20os%20achadinhos%20da%20Shirley!"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold shadow-sm transition-all active:scale-95"
+        >
+          <i class="ph-fill ph-whatsapp-logo text-base"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a
+          id="shareTelegramBtn"
+          href="https://t.me/share/url?url=https://collshp.com/ashodinhos_promos"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-xs font-bold shadow-sm transition-all active:scale-95"
+        >
+          <i class="ph-fill ph-telegram-logo text-base"></i>
+          <span>Telegram</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ===================================================================== -->
+  <!-- MODAL DE INSTRUÇÕES PARA O DESENVOLVEDOR / DONA DO PERFIL             -->
+  <!-- ===================================================================== -->
+  <div
+    id="devGuideModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="devModalTitle"
+  >
+    <div class="bg-white dark:bg-plum-800 border border-stone-200 dark:border-plum-700 rounded-3xl max-w-lg w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+      <!-- Cabeçalho do Modal -->
+      <div class="px-5 py-4 bg-gradient-to-r from-brand-600 to-purple-700 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="ph-fill ph-github-logo text-xl"></i>
+          <h3 id="devModalTitle" class="font-bold text-sm sm:text-base">Guia Rápido: GitHub Pages & Edição</h3>
+        </div>
+        <button
+          id="closeDevModalBtn"
+          type="button"
+          class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-white transition-colors"
+          aria-label="Fechar guia"
+        >
+          <i class="ph ph-x text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Conteúdo do Modal -->
+      <div class="p-5 overflow-y-auto space-y-4 text-xs sm:text-sm text-stone-700 dark:text-stone-200 leading-relaxed">
+        <div class="p-3.5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-200 text-xs">
+          <strong>🔒 Página Protegida (Somente Leitura):</strong> Seus seguidores e visitantes <strong>não</strong> podem alterar, excluir ou editar nenhum link pela tela. Toda alteração é feita apenas por você no código-fonte.
+        </div>
+
+        <div>
+          <h4 class="font-bold text-stone-900 dark:text-white mb-1 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs inline-flex items-center justify-center">1</span>
+            Como adicionar ou remover links facilmente
+          </h4>
+          <p class="text-xs text-stone-600 dark:text-stone-300 mb-2">
+            Abra o arquivo <code class="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-plum-900 font-mono text-brand-600 dark:text-brand-400">index.html</code> em qualquer editor de texto (ou direto no site do GitHub clicando no ícone de lápis ✏️) e procure por <code class="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-plum-900 font-mono text-brand-600 dark:text-brand-400">const SITE_CONFIG</code>.
+          </p>
+          <pre class="p-3 rounded-xl bg-stone-900 text-stone-100 font-mono text-[11px] overflow-x-auto leading-normal">{
+  title: "Novo Achadinho da Shopee",
+  subtitle: "Descrição curtinha do produto ou coleção",
+  category: "Casa & Quarto",
+  badge: "✨ Novo",
+  priceTag: "R$ 29,90", // opcional
+  highlightWord: "Casa", // palavra em fonte cursiva dourada
+  icon: "ph-sparkle",
+  url: "https://collshp.com/seu-link-aqui"
+}</pre>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-stone-900 dark:text-white mb-1 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs inline-flex items-center justify-center">2</span>
+            Como trocar a foto de perfil
+          </h4>
+          <p class="text-xs text-stone-600 dark:text-stone-300">
+            Salve sua foto na mesma pasta do projeto com o nome <code class="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-plum-900 font-mono">perfil.jpg</code> e altere o campo <code class="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-plum-900 font-mono">avatarUrl: "./perfil.jpg"</code> dentro do <code class="px-1.5 py-0.5 rounded bg-stone-100 dark:bg-plum-900 font-mono">SITE_CONFIG</code>.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-stone-900 dark:text-white mb-1 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-brand-600 text-white text-xs inline-flex items-center justify-center">3</span>
+            Como colocar no ar grátis no GitHub Pages
+          </h4>
+          <ol class="list-decimal list-inside space-y-1 text-xs text-stone-600 dark:text-stone-300">
+            <li>Crie um repositório público no GitHub (ex: <code class="font-mono">achadinhos</code>).</li>
+            <li>Envie este arquivo com o nome exato de <code class="font-mono font-bold">index.html</code>.</li>
+            <li>No GitHub, vá em <strong>Settings &rarr; Pages</strong>.</li>
+            <li>Em <strong>Branch</strong>, selecione <code class="font-mono">main</code> e clique em <strong>Save</strong>.</li>
+            <li>Em 1 minuto seu link estará ativo para colocar na bio do Instagram!</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Rodapé do Modal -->
+      <div class="px-5 py-3.5 bg-stone-50 dark:bg-plum-900/80 border-t border-stone-200 dark:border-plum-700 flex items-center justify-between gap-2">
+        <button
+          id="copyConfigTemplateBtn"
+          type="button"
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition-all shadow-sm"
+        >
+          <i class="ph ph-copy"></i>
+          <span>Copiar modelo de novo link</span>
+        </button>
+        <button
+          id="closeDevModalFooterBtn"
+          type="button"
+          class="px-4 py-2 rounded-xl bg-stone-200 dark:bg-plum-700 text-stone-700 dark:text-stone-200 text-xs font-semibold hover:opacity-90 transition-opacity"
+        >
+          Entendi
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- CONFIGURAÇÃO CENTRAL DO SITE (FÁCIL EDIÇÃO PARA O GITHUB PAGES)       -->
+  <!-- ===================================================================== -->
+  <script>
+    /**
+     * ========================================================================
+     * 🛠️ ÁREA DE EDIÇÃO RÁPIDA (SITE_CONFIG)
+     * ========================================================================
+     * Para adicionar, remover ou alterar qualquer botão da página:
+     * Basta editar a lista `links` abaixo e salvar o arquivo no GitHub!
+     * Não é necessário mexer no restante do código HTML.
+     */
+    const SITE_CONFIG = {
+      profile: {
+        name: "Ashô | Achadinhos da Shirley",
+        handle: "@ashodinhos_promos",
+        verifiedLabel: "Curadoria de Achadinhos",
+        // 💡 DICA: Para usar sua própria foto no GitHub Pages, suba uma imagem chamada
+        // "perfil.jpg" junto com o index.html e troque a linha abaixo para: "./perfil.jpg"
+        avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+        avatarFallbackInitials: "AS",
+        bioLines: [
+          "🛍️ SÓ indico produtos bem avaliados",
+          "🛒 Promoções e descontos pra você aproveitar",
+          "💎 Recomeçando e rumo a vitória"
+        ],
+        instagramUrl: "https://instagram.com/ashodinhos_promos",
+        storefrontUrl: "https://collshp.com/ashodinhos_promos?view=storefront"
+      },
+
+      // Botão principal fixo no topo (Vitrine Geral da Shopee)
+      mainStorefrontCta: {
+        title: "🛍️ Minha Vitrine Completa na Shopee",
+        subtitle: "Todos os achadinhos dos Reels e ofertas ativas",
+        badge: "OFICIAL",
+        url: "https://collshp.com/ashodinhos_promos?view=storefront"
+      },
+
+      // Pílulas de categorias (inspiradas nos Destaques do Instagram @ashodinhos_promos)
+      categories: [
+        { id: "Todos", label: "Todos", icon: "✨" },
+        { id: "Novidades", label: "Novidades", icon: "🌸" },
+        { id: "Casa & Quarto", label: "Casa & Quarto", icon: "🏠" },
+        { id: "Banheiro", label: "Banheiro", icon: "🚿" },
+        { id: "Cozinha", label: "Cozinha", icon: "🍳" },
+        { id: "Luxo", label: "Luxo", icon: "💎" },
+        { id: "Black Friday & 11.11", label: "Black Friday & 11.11", icon: "🖤" },
+        { id: "Até R$50", label: "Até R$50", icon: "💸" }
+      ],
+
+      // ======================================================================
+      // LISTA DE COLEÇÕES E ACHADINHOS
+      // Para adicionar um novo link, copie um bloco { ... }, cole abaixo e edite!
+      // ======================================================================
+      links: [
+        {
+          id: "casa-comprei-amei",
+          title: "Itens de Casa que Comprei e Amei",
+          highlightWord: "Casa",
+          subtitle: "Organizadores, decoração aconchegante e utilidades que comprei esses dias e são ótimos!",
+          category: "Casa & Quarto",
+          extraCategories: ["Novidades"],
+          badge: "🔥 Mais pedido",
+          icon: "ph-house-line",
+          featuredBanner: true, // Deixa o card com destaque visual magenta estilo capa dos Reels
+          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+        },
+        {
+          id: "banheiro-shopee",
+          title: "Achadinhos pro Banheiro na Shopee",
+          highlightWord: "Banheiro",
+          subtitle: "Praticidade, porta-shampoos, tapetes macios e organização que indico muito!",
+          category: "Banheiro",
+          extraCategories: ["Novidades"],
+          badge: "⭐ Nota 4.9+",
+          icon: "ph-Bathtub",
+          featuredBanner: false,
+          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+        },
+        {
+          id: "quarto-aconchegante",
+          title: "Itens pro Meu Quarto Aconchegante",
+          highlightWord: "Quarto",
+          subtitle: "Roupa de cama, iluminação quentinha e detalhes que trazem paz para a rotina",
+          category: "Casa & Quarto",
+          extraCategories: ["Novidades"],
+          badge: "✨ Favoritos",
+          icon: "ph-bed",
+          featuredBanner: false,
+          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+        },
+        {
+          id: "cozinha-dos-sonhos",
+          title: "5 Escolhas para uma Cozinha dos Sonhos",
+          highlightWord: "Cozinha",
+          subtitle: "Potes herméticos, utensílios estéticos e praticidade para o dia a dia",
+          category: "Cozinha",
+          extraCategories: ["Black Friday & 11.11"],
+          badge: "🍳 Especial 11.11",
+          icon: "ph-cooking-pot",
+          featuredBanner: false,
+          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+        },
+        {
+          id: "cozinha-menos-de-40",
+          title: "5 Itens de Cozinha por Menos de R$ 40",
+          highlightWord: "Cozinha",
+          subtitle: "Seleção econômica, linda e super bem avaliada para equipar a casa sem gastar muito",
+          category: "Até R$50",
+          extraCategories: ["Cozinha"],
+          priceTag: "Até R$ 40",
+          badge: "💸 Baratinhos",
+          icon: "ph-coins",
+          featuredBanner: false,
+          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+        },
+        {
+          id: "itens-de-luxo",
+          title: "5 Itens de Luxo no Meu Carrinho",
+          highlightWord: "Luxo",
+          subtitle: "Taças caneladas, eletros lindos e peças sofisticadas com desconto especial",
+          category: "Luxo",
+          extraCategories: ["Black Friday & 11.11"],
+          badge: "💎 Seleção Premium",
+          icon: "ph-wine",
+          featuredBanner: true,
+          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+        },
+        {
+          id: "salvos-black-friday",
+          title: "Itens que Já Salvei para a Black Friday",
+          highlightWord: "Black Friday",
+          subtitle: "Cafeteira, lava e seca e itens de desejo monitorados para aproveitar os melhores preços",
+          category: "Black Friday & 11.11",
+          extraCategories: ["Novidades"],
+          badge: "🖤 Ofertas",
+          icon: "ph-tag",
+          featuredBanner: false,
+          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+        },
+        {
+          id: "presentes-ate-50",
+          title: "Presentes e Utilidades Até R$ 50",
+          highlightWord: "Até R$ 50",
+          subtitle: "Achadinhos práticos, criativos e presenteáveis que cabem no seu bolso",
+          category: "Até R$50",
+          extraCategories: ["Casa & Quarto"],
+          priceTag: "Até R$ 50",
+          badge: "🎁 Presenteáveis",
+          icon: "ph-gift",
+          featuredBanner: false,
+          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+        }
+      ]
+    };
+
+
+    // ========================================================================
+    // LÓGICA DE RENDERIZAÇÃO E INTERATIVIDADE (À PROVA DE FALHAS)
+    // ========================================================================
+
+    let currentCategory = "Todos";
+    let searchQuery = "";
+
+    // Utilitário para acessar localStorage com segurança (não quebra em iframes restritos)
+    function safeGetStorage(key) {
+      try {
+        return window.localStorage.getItem(key);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function safeSetStorage(key, value) {
+      try {
+        window.localStorage.setItem(key, value);
+      } catch (e) {
+        // Ignora silenciosamente se o navegador bloquear cookies/storage em iframe
+      }
+    }
+
+    // Utilitário para escapar HTML com segurança
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Destaca a palavra-chave em estilo Serif Itálico Dourado/Rosa como nas capas dos Reels da Ashô
+    function formatStyledTitle(title, highlightWord, isFeaturedBanner) {
+      const safeTitle = escapeHtml(title);
+      if (!highlightWord) return safeTitle;
+      const safeHighlight = escapeHtml(highlightWord);
+      const regex = new RegExp(`(${safeHighlight})`, "i");
+
+      const highlightClass = isFeaturedBanner
+        ? "font-serif italic font-bold text-amber-300 tracking-wide px-0.5"
+        : "font-serif italic font-bold text-brand-600 dark:text-brand-400 tracking-wide px-0.5";
+
+      return safeTitle.replace(regex, `<span class="${highlightClass}">$1</span>`);
+    }
+
+    // 1. Renderizar Cabeçalho do Perfil
+    function renderProfileHeader() {
+      const { name, handle, avatarUrl, avatarFallbackInitials, bioLines, instagramUrl } = SITE_CONFIG.profile;
+      const headerEl = document.getElementById("profileHeader");
+
+      const bioHtml = bioLines
+        .map(line => `<li class="text-xs sm:text-[13px] text-stone-600 dark:text-stone-300 font-medium leading-snug">${escapeHtml(line)}</li>`)
+        .join("");
+
+      headerEl.innerHTML = `
+        <div class="relative inline-block mb-3">
+          <div class="w-28 h-28 rounded-full avatar-ring shadow-lg mx-auto">
+            <div class="w-full h-full rounded-full overflow-hidden bg-sand-100 dark:bg-plum-800 border-2 border-white dark:border-plum-900 flex items-center justify-center relative">
+              <img
+                src="${escapeHtml(avatarUrl)}"
+                alt="${escapeHtml(name)}"
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div style="display:none;" class="w-full h-full items-center justify-center bg-gradient-to-br from-brand-500 to-purple-700 text-white font-serif italic text-3xl font-bold">
+                ${escapeHtml(avatarFallbackInitials)}
+              </div>
+            </div>
+          </div>
+          <!-- Emblema Verificado / Brilho -->
+          <a
+            href="${escapeHtml(instagramUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Ver Instagram ${escapeHtml(handle)}"
+            class="absolute bottom-0.5 right-0.5 w-8 h-8 rounded-full bg-brand-600 text-white border-2 border-white dark:border-plum-900 shadow-md flex items-center justify-center hover:scale-110 transition-transform"
+          >
+            <i class="ph-fill ph-sparkle text-amber-300 text-sm"></i>
+          </a>
+        </div>
+
+        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-stone-900 dark:text-white flex items-center justify-center gap-1.5">
+          <span>${escapeHtml(name)}</span>
+        </h1>
+
+        <a
+          href="${escapeHtml(instagramUrl)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline mt-0.5 mb-3"
+        >
+          <i class="ph ph-instagram-logo text-sm"></i>
+          <span>${escapeHtml(handle)}</span>
+        </a>
+
+        <ul class="max-w-xs mx-auto space-y-1 bg-white/75 dark:bg-plum-800/60 backdrop-blur-sm px-4 py-3 rounded-2xl border border-stone-200/70 dark:border-plum-700/80 shadow-sm">
+          ${bioHtml}
+        </ul>
+      `;
+    }
+
+    // 2. Renderizar Botão Principal da Vitrine Shopee
+    function renderPrimaryCta() {
+      const cta = SITE_CONFIG.mainStorefrontCta;
+      const container = document.getElementById("primaryCtaSection");
+
+      container.innerHTML = `
+        <a
+          href="${escapeHtml(cta.url)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative block w-full rounded-3xl p-4 sm:p-5 asho-magenta-card text-white shadow-lg animate-pulseGlow overflow-hidden transition-all duration-300 hover:scale-[1.015] active:scale-[0.99]"
+        >
+          <!-- Efeito de brilho passando -->
+          <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent animate-shimmer pointer-events-none"></div>
+
+          <!-- Estrelinhas decorativas iguais às capas do IG da Ashô -->
+          <span class="absolute top-2.5 right-12 text-amber-300/80 text-xs pointer-events-none select-none">✦</span>
+          <span class="absolute bottom-2.5 left-10 text-amber-300/60 text-[10px] pointer-events-none select-none">✦</span>
+
+          <div class="relative z-10 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3.5 text-left">
+              <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shrink-0 shadow-inner">
+                <i class="ph-fill ph-shopping-bag-open text-2xl text-amber-200"></i>
+              </div>
+              <div>
+                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-300 text-stone-900 text-[10px] font-extrabold uppercase tracking-wider mb-1">
+                  <span>✨ ${escapeHtml(cta.badge)}</span>
+                </div>
+                <h2 class="font-extrabold text-sm sm:text-base leading-tight text-white">
+                  ${escapeHtml(cta.title)}
+                </h2>
+                <p class="text-xs text-pink-100/90 mt-0.5 line-clamp-1">
+                  ${escapeHtml(cta.subtitle)}
+                </p>
+              </div>
+            </div>
+
+            <div class="w-9 h-9 rounded-full bg-white/20 group-hover:bg-white group-hover:text-brand-600 flex items-center justify-center shrink-0 transition-all">
+              <i class="ph-bold ph-arrow-up-right text-lg"></i>
+            </div>
+          </div>
+        </a>
+      `;
+    }
+
+    // 3. Renderizar Pílulas de Categorias
+    function renderCategoryPills() {
+      const container = document.getElementById("categoryPillsContainer");
+
+      container.innerHTML = SITE_CONFIG.categories
+        .map(cat => {
+          const isActive = cat.id === currentCategory;
+          const activeClasses = isActive
+            ? "bg-brand-600 text-white border-brand-600 shadow-md shadow-brand-600/25 scale-[1.02]"
+            : "bg-white dark:bg-plum-800/90 text-stone-700 dark:text-stone-200 border-stone-200/90 dark:border-plum-700 hover:border-brand-400";
+
+          return `
+            <button
+              type="button"
+              data-category="${escapeHtml(cat.id)}"
+              class="category-pill shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full border text-xs font-bold transition-all active:scale-95 ${activeClasses}"
+            >
+              <span>${escapeHtml(cat.icon)}</span>
+              <span>${escapeHtml(cat.label)}</span>
+            </button>
+          `;
+        })
+        .join("");
+
+      // Eventos de clique nas pílulas
+      container.querySelectorAll(".category-pill").forEach(btn => {
+        btn.addEventListener("click", () => {
+          currentCategory = btn.getAttribute("data-category");
+          renderCategoryPills();
+          renderLinks();
+        });
+      });
+    }
+
+    // 4. Renderizar Cards de Links Filtrados
+    function renderLinks() {
+      const container = document.getElementById("linksContainer");
+      const emptyState = document.getElementById("emptyState");
+      const resultsCounter = document.getElementById("resultsCounter");
+      const activeCategoryLabel = document.getElementById("activeCategoryLabel");
+
+      const normalizedQuery = searchQuery.trim().toLowerCase();
+
+      const filteredLinks = SITE_CONFIG.links.filter(item => {
+        const matchesCategory =
+          currentCategory === "Todos" ||
+          item.category === currentCategory ||
+          (Array.isArray(item.extraCategories) && item.extraCategories.includes(currentCategory));
+
+        const matchesSearch =
+          !normalizedQuery ||
+          item.title.toLowerCase().includes(normalizedQuery) ||
+          item.subtitle.toLowerCase().includes(normalizedQuery) ||
+          item.category.toLowerCase().includes(normalizedQuery) ||
+          (item.badge && item.badge.toLowerCase().includes(normalizedQuery)) ||
+          (item.priceTag && item.priceTag.toLowerCase().includes(normalizedQuery));
+
+        return matchesCategory && matchesSearch;
+      });
+
+      // Atualiza cabeçalho da seção
+      activeCategoryLabel.textContent =
+        currentCategory === "Todos" ? "Coleções em Destaque" : `Categoria: ${currentCategory}`;
+      resultsCounter.textContent = `${filteredLinks.length} ${filteredLinks.length === 1 ? "coleção" : "coleções"}`;
+
+      if (filteredLinks.length === 0) {
+        container.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+
+      container.innerHTML = filteredLinks
+        .map(item => {
+          const styledTitle = formatStyledTitle(item.title, item.highlightWord, item.featuredBanner);
+          const iconClass = item.icon || "ph-sparkle";
+
+          // Caso seja um card com visual Magenta em destaque (inspirado nas capas dos Reels)
+          if (item.featuredBanner) {
+            return `
+              <a
+                href="${escapeHtml(item.url)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group relative block rounded-2xl p-4 asho-magenta-card text-white shadow-md hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.99] overflow-hidden"
+              >
+                <span class="absolute top-2 right-10 text-amber-300/70 text-xs pointer-events-none">✦</span>
+                <div class="flex items-start justify-between gap-3">
+                  <div class="flex items-start gap-3.5">
+                    <div class="w-11 h-11 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shrink-0 mt-0.5">
+                      <i class="ph-fill ${escapeHtml(iconClass)} text-xl text-amber-300"></i>
+                    </div>
+                    <div>
+                      <div class="flex flex-wrap items-center gap-1.5 mb-1">
+                        ${
+                          item.badge
+                            ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-300 text-stone-900 text-[10px] font-extrabold">${escapeHtml(item.badge)}</span>`
+                            : ""
+                        }
+                        <span class="text-[10px] font-semibold text-pink-100 bg-white/15 px-2 py-0.5 rounded-md">
+                          ${escapeHtml(item.category)}
+                        </span>
+                      </div>
+                      <h3 class="font-bold text-sm sm:text-[15px] leading-snug text-white">
+                        ${styledTitle}
+                      </h3>
+                      <p class="text-xs text-pink-100/90 mt-1 leading-relaxed">
+                        ${escapeHtml(item.subtitle)}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="w-8 h-8 rounded-full bg-white/15 group-hover:bg-white group-hover:text-brand-600 flex items-center justify-center shrink-0 transition-colors mt-1">
+                    <i class="ph-bold ph-caret-right text-base"></i>
+                  </div>
+                </div>
+              </a>
+            `;
+          }
+
+          // Card padrão elegante (Creme / Branco no Light, Plum no Dark)
+          return `
+            <a
+              href="${escapeHtml(item.url)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group block rounded-2xl p-4 bg-white dark:bg-plum-800/90 border border-stone-200/90 dark:border-plum-700 hover:border-brand-500 dark:hover:border-brand-500 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.99]"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3.5">
+                  <div class="w-11 h-11 rounded-xl bg-brand-50 dark:bg-brand-900/40 border border-brand-200/60 dark:border-brand-700/50 text-brand-600 dark:text-brand-300 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-brand-600 group-hover:text-white transition-colors">
+                    <i class="ph-fill ${escapeHtml(iconClass)} text-xl"></i>
+                  </div>
+                  <div>
+                    <div class="flex flex-wrap items-center gap-1.5 mb-1">
+                      ${
+                        item.badge
+                          ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md bg-brand-50 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 text-[10px] font-bold border border-brand-200/60 dark:border-brand-800">${escapeHtml(item.badge)}</span>`
+                          : ""
+                      }
+                      ${
+                        item.priceTag
+                          ? `<span class="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 text-[10px] font-extrabold border border-emerald-200 dark:border-emerald-800/60">${escapeHtml(item.priceTag)}</span>`
+                          : ""
+                      }
+                      <span class="text-[10px] font-medium text-stone-400 dark:text-stone-400">
+                        • ${escapeHtml(item.category)}
+                      </span>
+                    </div>
+                    <h3 class="font-bold text-sm sm:text-[15px] leading-snug text-stone-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-300 transition-colors">
+                      ${styledTitle}
+                    </h3>
+                    <p class="text-xs text-stone-500 dark:text-stone-300 mt-1 leading-relaxed">
+                      ${escapeHtml(item.subtitle)}
+                    </p>
+                  </div>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-stone-100 dark:bg-plum-700 text-stone-500 dark:text-stone-300 group-hover:bg-brand-600 group-hover:text-white flex items-center justify-center shrink-0 transition-colors mt-1">
+                  <i class="ph-bold ph-caret-right text-base"></i>
+                </div>
+              </div>
+            </a>
+          `;
+        })
+        .join("");
+    }
+
+    // 5. Renderizar Rodapé Social (Instagram)
+    function renderSocialFooter() {
+      const { handle, instagramUrl, storefrontUrl } = SITE_CONFIG.profile;
+      const container = document.getElementById("socialFooterContainer");
+
+      container.innerHTML = `
+        <div class="grid grid-cols-2 gap-2.5">
+          <a
+            href="${escapeHtml(instagramUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-white dark:bg-plum-800 border border-stone-200 dark:border-plum-700 hover:border-brand-500 text-stone-800 dark:text-stone-100 text-xs font-bold shadow-sm transition-all active:scale-95"
+          >
+            <i class="ph-fill ph-instagram-logo text-lg text-brand-600"></i>
+            <span>Seguir no Instagram</span>
+          </a>
+
+          <a
+            href="${escapeHtml(storefrontUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-white dark:bg-plum-800 border border-stone-200 dark:border-plum-700 hover:border-brand-500 text-stone-800 dark:text-stone-100 text-xs font-bold shadow-sm transition-all active:scale-95"
+          >
+            <i class="ph-fill ph-storefront text-lg text-amber-500"></i>
+            <span>Vitrine Shopee</span>
+          </a>
+        </div>
+      `;
+    }
+
+    // Utilitário de Toast Notification
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById("toastNotification");
+      const msgEl = document.getElementById("toastMessage");
+      if (!toast || !msgEl) return;
+
+      msgEl.textContent = message;
+      toast.classList.remove("opacity-0", "translate-y-3");
+      toast.classList.add("opacity-100", "translate-y-0");
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add("opacity-0", "translate-y-3");
+        toast.classList.remove("opacity-100", "translate-y-0");
+      }, 2800);
+    }
+
+    // Utilitário seguro para obter a URL compartilhável (funciona em GitHub Pages, local file:// ou preview iframe)
+    function getShareableUrl() {
+      try {
+        const href = window.location.href || "";
+        if (href.startsWith("http") && !href.includes("about:srcdoc") && !href.includes("blob:")) {
+          return href;
+        }
+      } catch (e) {
+        // Ignora erro de acesso em iframe
+      }
+      return SITE_CONFIG.profile.storefrontUrl || "https://collshp.com/ashodinhos_promos?view=storefront";
+    }
+
+    // Utilitário à prova de falhas para copiar texto para a área de transferência
+    async function copyTextToClipboard(text, successMsg) {
+      let copied = false;
+
+      // 1. Tenta a API moderna de Clipboard apenas se estiver em contexto seguro e fora de bloqueio
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          copied = true;
+        }
+      } catch (err) {
+        copied = false;
+      }
+
+      // 2. Fallback clássico com <textarea> oculto (funciona em iframes, previews e file://)
+      if (!copied) {
+        try {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.top = "-9999px";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          copied = document.execCommand("copy");
+          document.body.removeChild(textarea);
+        } catch (err) {
+          copied = false;
+        }
+      }
+
+      if (copied && successMsg) {
+        showToast(successMsg);
+      }
+      return copied;
+    }
+
+    // Abre o Modal de Compartilhamento customizado e preenche os links sociais
+    function openShareModal(shareUrl) {
+      const shareModal = document.getElementById("shareModal");
+      const shareUrlInput = document.getElementById("shareUrlInput");
+      const whatsappBtn = document.getElementById("shareWhatsAppBtn");
+      const telegramBtn = document.getElementById("shareTelegramBtn");
+
+      if (!shareModal) return;
+
+      const shareText = `${SITE_CONFIG.profile.name} - Confira os melhores achadinhos e promoções da Shopee! 🛍️✨`;
+      if (shareUrlInput) shareUrlInput.value = shareUrl;
+      if (whatsappBtn) {
+        whatsappBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`;
+      }
+      if (telegramBtn) {
+        telegramBtn.href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`;
+      }
+
+      shareModal.classList.remove("hidden");
+      shareModal.classList.add("flex");
+    }
+
+    // Função de Compartilhamento Principal (100% à prova de travamentos)
+    async function sharePage(event) {
+      if (event && typeof event.preventDefault === "function") {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      const shareUrl = getShareableUrl();
+      const shareData = {
+        title: SITE_CONFIG.profile.name || "Ashô | Achadinhos da Shirley",
+        text: "Confira os melhores achadinhos e promoções da Shirley na Shopee! 🛍️✨",
+        url: shareUrl
+      };
+
+      // Verifica se está rodando fora de um iframe e em dispositivo móvel com suporte a Web Share
+      let isTopWindow = false;
+      try {
+        isTopWindow = window.self === window.top;
+      } catch (e) {
+        isTopWindow = false;
+      }
+
+      const isMobileDevice = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent || "");
+
+      if (isTopWindow && isMobileDevice && typeof navigator.share === "function") {
+        try {
+          if (typeof navigator.canShare !== "function" || navigator.canShare(shareData)) {
+            await navigator.share(shareData);
+            return;
+          }
+        } catch (err) {
+          // Se o usuário apenas fechou a gaveta nativa do celular, não faz nada
+          if (err && err.name === "AbortError") return;
+          // Para qualquer outro erro (NotAllowedError, SecurityError, etc.), continua para o modal + cópia
+        }
+      }
+
+      // Fallback universal (Preview iframe, Desktop ou quando navigator.share é bloqueado):
+      // Copia automaticamente o link e exibe o Modal de Compartilhamento
+      await copyTextToClipboard(shareUrl, "Link copiado para a área de transferência! ✨");
+      openShareModal(shareUrl);
+    }
+
+    // Configurar Eventos de Busca, Tema, Compartilhamento e Modais
+    function setupInteractions() {
+      // Busca em tempo real
+      const searchInput = document.getElementById("searchInput");
+      const clearSearchBtn = document.getElementById("clearSearchBtn");
+      const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+
+      searchInput.addEventListener("input", e => {
+        searchQuery = e.target.value;
+        clearSearchBtn.classList.toggle("hidden", !searchQuery);
+        renderLinks();
+      });
+
+      clearSearchBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        searchQuery = "";
+        clearSearchBtn.classList.add("hidden");
+        renderLinks();
+        searchInput.focus();
+      });
+
+      resetFiltersBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        searchQuery = "";
+        currentCategory = "Todos";
+        clearSearchBtn.classList.add("hidden");
+        renderCategoryPills();
+        renderLinks();
+      });
+
+      // Alternar Tema Claro / Escuro com proteção para iframe
+      const themeToggleBtn = document.getElementById("themeToggleBtn");
+      const themeIcon = document.getElementById("themeIcon");
+      const htmlEl = document.documentElement;
+
+      const savedTheme = safeGetStorage("asho_theme");
+      if (savedTheme === "dark") {
+        htmlEl.classList.add("dark");
+        themeIcon.className = "ph-fill ph-sun text-lg";
+      }
+
+      themeToggleBtn.addEventListener("click", () => {
+        const isDark = htmlEl.classList.toggle("dark");
+        safeSetStorage("asho_theme", isDark ? "dark" : "light");
+        themeIcon.className = isDark ? "ph-fill ph-sun text-lg" : "ph ph-moon text-lg";
+      });
+
+      // Botão Compartilhar e Modal de Compartilhamento
+      const shareBtn = document.getElementById("shareBtn");
+      const shareModal = document.getElementById("shareModal");
+      const closeShareModalBtn = document.getElementById("closeShareModalBtn");
+      const copyShareUrlBtn = document.getElementById("copyShareUrlBtn");
+      const shareUrlInput = document.getElementById("shareUrlInput");
+
+      shareBtn.addEventListener("click", sharePage);
+
+      function closeShareModal() {
+        shareModal.classList.add("hidden");
+        shareModal.classList.remove("flex");
+      }
+
+      closeShareModalBtn.addEventListener("click", closeShareModal);
+      shareModal.addEventListener("click", e => {
+        if (e.target === shareModal) closeShareModal();
+      });
+
+      copyShareUrlBtn.addEventListener("click", async () => {
+        const urlToCopy = shareUrlInput ? shareUrlInput.value : getShareableUrl();
+        await copyTextToClipboard(urlToCopy, "Link copiado! Pronto para colar ✨");
+      });
+
+      // Modal de Instruções para a Dona do Perfil / GitHub Pages
+      const devModal = document.getElementById("devGuideModal");
+      const openDevModalBtn = document.getElementById("openDevModalBtn");
+      const closeDevModalBtn = document.getElementById("closeDevModalBtn");
+      const closeDevModalFooterBtn = document.getElementById("closeDevModalFooterBtn");
+      const copyConfigTemplateBtn = document.getElementById("copyConfigTemplateBtn");
+
+      function openDevModal() {
+        devModal.classList.remove("hidden");
+        devModal.classList.add("flex");
+      }
+
+      function closeDevModal() {
+        devModal.classList.add("hidden");
+        devModal.classList.remove("flex");
+      }
+
+      openDevModalBtn.addEventListener("click", openDevModal);
+      closeDevModalBtn.addEventListener("click", closeDevModal);
+      closeDevModalFooterBtn.addEventListener("click", closeDevModal);
+      devModal.addEventListener("click", e => {
+        if (e.target === devModal) closeDevModal();
+      });
+
+      copyConfigTemplateBtn.addEventListener("click", async () => {
+        const snippet = `{
+  id: "novo-achadinho",
+  title: "Itens pro meu Quarto que comprei na Shopee",
+  highlightWord: "Quarto",
+  subtitle: "Descrição rápida do produto ou coleção",
+  category: "Casa & Quarto",
+  badge: "✨ Novo",
+  icon: "ph-sparkle",
+  thumbnailUrl: "./images/meu-item.jpg",
+  featuredBanner: false,
+  url: "https://collshp.com/ashodinhos_promos?view=storefront"
+},`;
+        await copyTextToClipboard(snippet, "Modelo de link copiado! Cole no SITE_CONFIG.");
+      });
+    }
+
+    // Inicialização quando a página carrega
+    window.addEventListener("DOMContentLoaded", () => {
+      renderProfileHeader();
+      renderPrimaryCta();
+      renderCategoryPills();
+      renderLinks();
+      renderSocialFooter();
+      setupInteractions();
+    });
+  </script>
+</body>
+</html>
