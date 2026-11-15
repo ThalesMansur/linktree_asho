@@ -63,12 +63,17 @@
             pulseGlow: {
               '0%, 100%': { boxShadow: '0 10px 25px -5px rgba(225, 29, 116, 0.45)' },
               '50%': { boxShadow: '0 12px 30px -2px rgba(225, 29, 116, 0.7)' }
+            },
+            whatsappGlow: {
+              '0%, 100%': { boxShadow: '0 10px 25px -5px rgba(37, 211, 102, 0.45)' },
+              '50%': { boxShadow: '0 12px 30px -2px rgba(37, 211, 102, 0.7)' }
             }
           },
           animation: {
             shimmer: 'shimmer 2.8s infinite',
             float: 'float 4s ease-in-out infinite',
-            pulseGlow: 'pulseGlow 3s infinite'
+            pulseGlow: 'pulseGlow 3s infinite',
+            whatsappGlow: 'whatsappGlow 3s infinite',
           }
         }
       }
@@ -94,6 +99,11 @@
     /* Banner estilo capa dos Reels da Ashô */
     .asho-magenta-card {
       background: linear-gradient(135deg, #E11D74 0%, #C2185B 55%, #8E24AA 100%);
+    }
+
+    /* Banner estilo capa dos Reels da Ashô (versão verde WhatsApp) */
+    .asho-green-card {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 55%, #075E54 100%);
     }
 
     /* Transições suaves de tema */
@@ -170,6 +180,10 @@
       <!-- 2. BOTÃO PRINCIPAL EM DESTAQUE (Vitrine Completa Shopee)          -->
       <!-- ================================================================= -->
       <section id="primaryCtaSection" class="mb-6">
+        <!-- Preenchido dinamicamente pelo JavaScript -->
+      </section>
+
+      <section id="primaryGpWPP" class="mb-6">
         <!-- Preenchido dinamicamente pelo JavaScript -->
       </section>
 
@@ -258,17 +272,6 @@
            SÓ indico produtos bem avaliados • Links oficiais e seguros
         </p>
 
-        <!-- Botão discreto de ajuda para o dono da página (GitHub Pages / Edição no código) -->
-        <div class="pt-3">
-          <button
-            id="openDevModalBtn"
-            type="button"
-            class="inline-flex items-center gap-1 text-[11px] text-stone-400/80 hover:text-brand-600 dark:text-stone-500 dark:hover:text-brand-400 transition-colors underline underline-offset-2"
-          >
-            <i class="ph ph-code"></i>
-            <span>Como atualizar links / Publicar no GitHub Pages</span>
-          </button>
-        </div>
       </div>
     </footer>
 
@@ -500,6 +503,13 @@
         subtitle: "Todos os achadinhos dos Reels e ofertas ativas",
         badge: "OFICIAL",
         url: "https://collshp.com/ashodinhos_promos?view=storefront"
+      },
+
+      grupoWpp: {
+        title: "📱 Meu Grupo no Whatsapp",
+        subtitle: "Todos os achadinhos dos Reels e ofertas ativas",
+        badge: "OFICIAL",
+        url: "https://chat.whatsapp.com/Ivl6hzaYj0k8jVTXpoBWQT?s=cl&p=i&iam=2"
       },
 
       // Pílulas de categorias (inspiradas nos Destaques do Instagram @ashodinhos_promos)
@@ -748,7 +758,7 @@
           <div class="relative z-10 flex items-center justify-between gap-3">
             <div class="flex items-center gap-3.5 text-left">
               <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shrink-0 shadow-inner">
-                <i class="ph-fill ph-shopping-bag-open text-2xl text-amber-200"></i>
+                <i class="ph-fill ph-whatsapp-logo text-2xl text-amber-200"></i>
               </div>
               <div>
                 <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-300 text-stone-900 text-[10px] font-extrabold uppercase tracking-wider mb-1">
@@ -759,6 +769,51 @@
                 </h2>
                 <p class="text-xs text-pink-100/90 mt-0.5 line-clamp-1">
                   ${escapeHtml(cta.subtitle)}
+                </p>
+              </div>
+            </div>
+
+            <div class="w-9 h-9 rounded-full bg-white/20 group-hover:bg-white group-hover:text-brand-600 flex items-center justify-center shrink-0 transition-all">
+              <i class="ph-bold ph-arrow-up-right text-lg"></i>
+            </div>
+          </div>
+        </a>
+      `;
+    }
+
+    // 2. Renderizar Grupo Whatsapp
+    function renderPrimaryGpWPP() {
+      const wpp = SITE_CONFIG.grupoWpp;
+      const container = document.getElementById("primaryGpWPP");
+
+      container.innerHTML = `
+        <a
+          href="${escapeHtml(wpp.url)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative block w-full rounded-3xl p-4 sm:p-5 asho-green-card text-white shadow-lg animate-whatsappGlow overflow-hidden transition-all duration-300 hover:scale-[1.015] active:scale-[0.99]"
+        >
+          <!-- Efeito de brilho passando -->
+          <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent animate-shimmer pointer-events-none"></div>
+
+          <!-- Estrelinhas decorativas iguais às capas do IG da Ashô -->
+          <span class="absolute top-2.5 right-12 text-white-300/80 text-xs pointer-events-none select-none">✦</span>
+          <span class="absolute bottom-2.5 left-10 text-white/60 text-[10px] pointer-events-none select-none">✦</span>
+
+          <div class="relative z-10 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3.5 text-left">
+              <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shrink-0 shadow-inner">
+                <i class="ph-fill ph-whatsapp-logo text-2xl text-amber-200"></i>
+              </div>
+              <div>
+                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-300 text-stone-900 text-[10px] font-extrabold uppercase tracking-wider mb-1">
+                  <span>✨ ${escapeHtml(wpp.badge)}</span>
+                </div>
+                <h2 class="font-extrabold text-sm sm:text-base leading-tight text-white">
+                  ${escapeHtml(wpp.title)}
+                </h2>
+                <p class="text-xs text-pink-100/90 mt-0.5 line-clamp-1">
+                  ${escapeHtml(wpp.subtitle)}
                 </p>
               </div>
             </div>
@@ -1174,51 +1229,13 @@
         await copyTextToClipboard(urlToCopy, "Link copiado! Pronto para colar ✨");
       });
 
-      // Modal de Instruções para a Dona do Perfil / GitHub Pages
-      const devModal = document.getElementById("devGuideModal");
-      const openDevModalBtn = document.getElementById("openDevModalBtn");
-      const closeDevModalBtn = document.getElementById("closeDevModalBtn");
-      const closeDevModalFooterBtn = document.getElementById("closeDevModalFooterBtn");
-      const copyConfigTemplateBtn = document.getElementById("copyConfigTemplateBtn");
-
-      function openDevModal() {
-        devModal.classList.remove("hidden");
-        devModal.classList.add("flex");
-      }
-
-      function closeDevModal() {
-        devModal.classList.add("hidden");
-        devModal.classList.remove("flex");
-      }
-
-      openDevModalBtn.addEventListener("click", openDevModal);
-      closeDevModalBtn.addEventListener("click", closeDevModal);
-      closeDevModalFooterBtn.addEventListener("click", closeDevModal);
-      devModal.addEventListener("click", e => {
-        if (e.target === devModal) closeDevModal();
-      });
-
-      copyConfigTemplateBtn.addEventListener("click", async () => {
-        const snippet = `{
-  id: "novo-achadinho",
-  title: "Itens pro meu Quarto que comprei na Shopee",
-  highlightWord: "Quarto",
-  subtitle: "Descrição rápida do produto ou coleção",
-  category: "Casa & Quarto",
-  badge: "✨ Novo",
-  icon: "ph-sparkle",
-  thumbnailUrl: "./images/meu-item.jpg",
-  featuredBanner: false,
-  url: "https://collshp.com/ashodinhos_promos?view=storefront"
-},`;
-        await copyTextToClipboard(snippet, "Modelo de link copiado! Cole no SITE_CONFIG.");
-      });
     }
 
     // Inicialização quando a página carrega
     window.addEventListener("DOMContentLoaded", () => {
       renderProfileHeader();
       renderPrimaryCta();
+      renderPrimaryGpWPP();
       renderCategoryPills();
       renderLinks();
       renderSocialFooter();
