@@ -539,93 +539,7 @@
           badge: "🔥 Mais pedido",
           icon: "ph-house-line",
           featuredBanner: true, // Deixa o card com destaque visual magenta estilo capa dos Reels
-          url: "https://collshp.com/ashodinhos_promos?view=storefront"
-        },
-        {
-          id: "banheiro-shopee",
-          title: "Achadinhos pro Banheiro na Shopee",
-          highlightWord: "Banheiro",
-          subtitle: "Praticidade, porta-shampoos, tapetes macios e organização que indico muito!",
-          category: "Banheiro",
-          extraCategories: ["Novidades"],
-          badge: "⭐ Nota 4.9+",
-          icon: "ph-Bathtub",
-          featuredBanner: false,
-          url: "https://collshp.com/ashodinhos_promos?view=storefront"
-        },
-        {
-          id: "quarto-aconchegante",
-          title: "Itens pro Meu Quarto Aconchegante",
-          highlightWord: "Quarto",
-          subtitle: "Roupa de cama, iluminação quentinha e detalhes que trazem paz para a rotina",
-          category: "Casa & Quarto",
-          extraCategories: ["Novidades"],
-          badge: "✨ Favoritos",
-          icon: "ph-bed",
-          featuredBanner: false,
-          url: "https://collshp.com/ashodinhos_promos?view=storefront"
-        },
-        {
-          id: "cozinha-dos-sonhos",
-          title: "5 Escolhas para uma Cozinha dos Sonhos",
-          highlightWord: "Cozinha",
-          subtitle: "Potes herméticos, utensílios estéticos e praticidade para o dia a dia",
-          category: "Cozinha",
-          extraCategories: ["Black Friday & 11.11"],
-          badge: "🍳 Especial 11.11",
-          icon: "ph-cooking-pot",
-          featuredBanner: false,
-          url: "https://collshp.com/ashodinhos_promos?view=storefront"
-        },
-        {
-          id: "cozinha-menos-de-40",
-          title: "5 Itens de Cozinha por Menos de R$ 40",
-          highlightWord: "Cozinha",
-          subtitle: "Seleção econômica, linda e super bem avaliada para equipar a casa sem gastar muito",
-          category: "Até R$50",
-          extraCategories: ["Cozinha"],
-          priceTag: "Até R$ 40",
-          badge: "💸 Baratinhos",
-          icon: "ph-coins",
-          featuredBanner: false,
-          url: "https://collshp.com/ashodinhos_promos?view=storefront"
-        },
-        {
-          id: "itens-de-luxo",
-          title: "5 Itens de Luxo no Meu Carrinho",
-          highlightWord: "Luxo",
-          subtitle: "Taças caneladas, eletros lindos e peças sofisticadas com desconto especial",
-          category: "Luxo",
-          extraCategories: ["Black Friday & 11.11"],
-          badge: "💎 Seleção Premium",
-          icon: "ph-wine",
-          featuredBanner: true,
-          url: "https://collshp.com/ashodinhos_promos?view=storefront"
-        },
-        {
-          id: "salvos-black-friday",
-          title: "Itens que Já Salvei para a Black Friday",
-          highlightWord: "Black Friday",
-          subtitle: "Cafeteira, lava e seca e itens de desejo monitorados para aproveitar os melhores preços",
-          category: "Black Friday & 11.11",
-          extraCategories: ["Novidades"],
-          badge: "🖤 Ofertas",
-          icon: "ph-tag",
-          featuredBanner: false,
-          url: "https://collshp.com/ashodinhos_promos?view=storefront"
-        },
-        {
-          id: "presentes-ate-50",
-          title: "Presentes e Utilidades Até R$ 50",
-          highlightWord: "Até R$ 50",
-          subtitle: "Achadinhos práticos, criativos e presenteáveis que cabem no seu bolso",
-          category: "Até R$50",
-          extraCategories: ["Casa & Quarto"],
-          priceTag: "Até R$ 50",
-          badge: "🎁 Presenteáveis",
-          icon: "ph-gift",
-          featuredBanner: false,
-          url: "https://collshp.com/ashodinhos_promos?view=storefront"
+          url: "https://collshp.com/ashodinhos_promos/category/4455934"
         }
       ]
     };
@@ -826,11 +740,45 @@
       `;
     }
 
-    // 3. Renderizar Pílulas de Categorias
+    // Helpers de filtragem (usados pelas pílulas e pela lista)
+    function itemMatchesCategory(item, categoryId) {
+      return (
+        categoryId === "Todos" ||
+        item.category === categoryId ||
+        (Array.isArray(item.extraCategories) && item.extraCategories.includes(categoryId))
+      );
+    }
+
+    function itemMatchesSearch(item) {
+      const q = searchQuery.trim().toLowerCase();
+      return (
+        !q ||
+        item.title.toLowerCase().includes(q) ||
+        item.subtitle.toLowerCase().includes(q) ||
+        item.category.toLowerCase().includes(q) ||
+        (item.badge && item.badge.toLowerCase().includes(q)) ||
+        (item.priceTag && item.priceTag.toLowerCase().includes(q))
+      );
+    }
+
+    // 3. Renderizar Pílulas de Categorias (só mostra categorias que têm ao menos 1 coleção)
     function renderCategoryPills() {
       const container = document.getElementById("categoryPillsContainer");
 
-      container.innerHTML = SITE_CONFIG.categories
+      const visibleCategories = SITE_CONFIG.categories.filter(cat =>
+        cat.id === "Todos" ||
+        SITE_CONFIG.links.some(item => itemMatchesCategory(item, cat.id) && itemMatchesSearch(item))
+      );
+
+      // Se a categoria ativa sumiu (ex.: por causa da busca), volta para "Todos"
+      if (!visibleCategories.some(cat => cat.id === currentCategory)) {
+        currentCategory = "Todos";
+      }
+
+      // Se só sobrou "Todos", esconde a barra de pílulas inteira
+      container.classList.toggle("hidden", visibleCategories.length <= 1);
+
+      container.innerHTML = visibleCategories
         .map(cat => {
           const isActive = cat.id === currentCategory;
           const activeClasses = isActive
@@ -867,24 +815,9 @@
       const resultsCounter = document.getElementById("resultsCounter");
       const activeCategoryLabel = document.getElementById("activeCategoryLabel");
 
-      const normalizedQuery = searchQuery.trim().toLowerCase();
-
-      const filteredLinks = SITE_CONFIG.links.filter(item => {
-        const matchesCategory =
-          currentCategory === "Todos" ||
-          item.category === currentCategory ||
-          (Array.isArray(item.extraCategories) && item.extraCategories.includes(currentCategory));
-
-        const matchesSearch =
-          !normalizedQuery ||
-          item.title.toLowerCase().includes(normalizedQuery) ||
-          item.subtitle.toLowerCase().includes(normalizedQuery) ||
-          item.category.toLowerCase().includes(normalizedQuery) ||
-          (item.badge && item.badge.toLowerCase().includes(normalizedQuery)) ||
-          (item.priceTag && item.priceTag.toLowerCase().includes(normalizedQuery));
-
-        return matchesCategory && matchesSearch;
-      });
+      const filteredLinks = SITE_CONFIG.links.filter(
+        item => itemMatchesCategory(item, currentCategory) && itemMatchesSearch(item)
+      );
 
       // Atualiza cabeçalho da seção
       activeCategoryLabel.textContent =
@@ -1168,6 +1101,7 @@
       searchInput.addEventListener("input", e => {
         searchQuery = e.target.value;
         clearSearchBtn.classList.toggle("hidden", !searchQuery);
+        renderCategoryPills();
         renderLinks();
       });
 
@@ -1175,6 +1109,7 @@
         searchInput.value = "";
         searchQuery = "";
         clearSearchBtn.classList.add("hidden");
+        renderCategoryPills();
         renderLinks();
         searchInput.focus();
       });
